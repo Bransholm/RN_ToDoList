@@ -5,9 +5,9 @@ import notesData from "./notesData.json"
 
 export default function App() {
 
-  //useState for the input a new field
+  // UseState for the input a new todo
   const [text, setText] = useState("");
-  //useState for the notes list
+  // UseState for the notes list
   const [notes, setNotes] = useState(notesData);
 
   // Console.log notes for each render
@@ -15,6 +15,7 @@ export default function App() {
     console.log("Updated notes:", notes);
   }, [notes]);
 
+  // Button handler for creating an new task
   const createTaskButtonHandler = () => {
     if (text.trim().length > 0) {
       setNotes([...notes, { key: notes.length + 1, name: text }]);
