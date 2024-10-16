@@ -1,5 +1,15 @@
 [
-    { "key": 1, "name": "Clean the kitchen" },
-    { "key": 2, "name": "Wash the car" },
-    { "key": 3, "name": "Watch a movie" }
-  ]
+  { "key": 1, "name": "Clean the kitchen" },
+  { "key": 2, "name": "Wash the car" },
+  { "key": 3, "name": "Watch a movie" },
+  { "key": 4, "name": "Organize the bookshelf and ensure all books are alphabetically arranged" },
+  { "key": 5, "name": "Prepare the living room for guests by cleaning and rearranging furniture" },
+  { "key": 6, "name": "Complete the programming assignment for the class and submit it on time" },
+  { "key": 7, "name": "Write a blog post about the latest technology trends in mobile development" },
+  { "key": 8, "name": "Plan the weekly meal prep, including making a grocery list and shopping" },
+  { "key": 9, "name": "Read at least 50 pages of the current book and summarize each chapter briefly" },
+  { "key": 10, "name": "Create a detailed itinerary for the upcoming vacation, including hotels and flights" },
+  { "key": 11, "name": "Finish the painting in the living room and choose frames for the pictures" },
+  { "key": 12, "name": "Organize the garage, including tools, sports equipment, and storage boxes" },
+  { "key": 13, "name": "Write a detailed report on the latest project progress and send it to the team" }
+]

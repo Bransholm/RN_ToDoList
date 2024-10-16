@@ -38,9 +38,16 @@ export default function App() {
       </Pressable>
       <FlatList
         data={notes}
-        renderItem={(note) => (
-          <Text style={styles.noteText}>{note.item.key}. {note.item.name}</Text>
-        )}
+        renderItem={(note) => {
+          const displayText = note.item.name.length > 25
+            ? `${note.item.name.substring(0, 25)}...`
+            : note.item.name
+          return (
+            <Text style={styles.noteText}>
+              {note.item.key}. {displayText}
+            </Text>
+          );
+        }}
       />
 
       <StatusBar style="auto" />
