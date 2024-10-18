@@ -43,11 +43,18 @@ export default function TodoListScreen({navigation}) {
             ? `${note.item.name.substring(0, 25)}...`
             : note.item.name
             return (
-                <Pressable style={{alignSelf: "flex-start"}} onPress={() => navigation.navigate('Details', {note: note.item})}>
-                    <Text style={styles.noteText}>
-                        {note.item.key}. {displayText}
+              <Pressable style={{ alignSelf: "flex-start" }} onPress={() => navigation.navigate('Details', { note: note.item })}>
+                <View style={{flexDirection: 'row'}}>
+                    <Text style={[styles.noteText, {width: 25}]}>
+                        {note.item.key}.
                     </Text>
-                </Pressable> 
+                    <Text style={styles.noteText}>
+                        {displayText}
+                    </Text>
+
+                </View>
+                    
+              </Pressable> 
           );
         }}
       />
@@ -97,5 +104,7 @@ const styles = StyleSheet.create({
   noteText: {
     color: "#fff",
     paddingBottom: 2,
+    fontSize: 16,
+    fontStyle: "italic",
   },
 });
