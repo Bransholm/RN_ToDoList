@@ -36,28 +36,32 @@ export default function TodoListScreen({navigation}) {
       <Pressable style={styles.button} onPress={createTaskButtonHandler}>
         <Text style={styles.buttonText}>Create task</Text>
       </Pressable>
-      <FlatList
-        data={notes}
-        renderItem={(note) => {
-          const displayText = note.item.name.length > 25
-            ? `${note.item.name.substring(0, 25)}...`
-            : note.item.name
+      <View style={styles.noteContainer}>
+        <FlatList
+          data={notes}
+          renderItem={(note) => {
+            const displayText =
+              note.item.name.length > 25
+                ? `${note.item.name.substring(0, 25)}...`
+                : note.item.name;
             return (
-              <Pressable style={{ alignSelf: "flex-start" }} onPress={() => navigation.navigate('Details', { note: note.item })}>
-                <View style={{flexDirection: 'row'}}>
-                    <Text style={[styles.noteText, {width: 25}]}>
-                        {note.item.key}.
-                    </Text>
-                    <Text style={styles.noteText}>
-                        {displayText}
-                    </Text>
-
+              <Pressable
+                style={{ alignSelf: "flex-start" }}
+                onPress={() =>
+                  navigation.navigate("Details", { note: note.item })
+                }
+              >
+                <View style={{ flexDirection: "row" }}>
+                  <Text style={[styles.noteText, { width: 25 }]}>
+                    {note.item.key}.
+                  </Text>
+                  <Text style={styles.noteText}>{displayText}</Text>
                 </View>
-                    
-              </Pressable> 
-          );
-        }}
-      />
+              </Pressable>
+            );
+          }}
+        />
+      </View>
 
       <StatusBar style="auto" />
     </View>
@@ -95,11 +99,20 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 10,
     padding: 5,
-    marginVertical: 10,
+    marginTop: 10,
+    marginBottom: 20,
   },
   buttonText: {
     color: "#fff",
     fontWeight: 600,
+  },
+  noteContainer: {
+    backgroundColor: "#FBC02D",
+    padding: 20,
+    width: 280,
+    borderWidth: 2,
+    borderColor: "#777",
+    marginBottom: 10,
   },
   noteText: {
     color: "#fff",
