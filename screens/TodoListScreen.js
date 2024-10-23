@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Pressable, TextInput, FlatList } from "react-na
 import { useState, useEffect } from "react";
 import notesData from "../notesData.json"
 import nativeStyles from "../nativeStyles";
+import StandardButton from "../components/buttons";
 
 export default function TodoListScreen({navigation}) {
 
@@ -34,9 +35,10 @@ export default function TodoListScreen({navigation}) {
         placeholder="Enter new task..."
         onSubmitEditing={createTaskButtonHandler}
       />
-      <Pressable style={nativeStyles.button} onPress={createTaskButtonHandler}>
-        <Text style={nativeStyles.buttonText}>Create task</Text>
-      </Pressable>
+      <StandardButton
+        onPress={createTaskButtonHandler}
+        title={"Create task"}
+      />
       <View style={[nativeStyles.noteContainer, { marginTop: 15 }]}>
         <FlatList
           data={notes}

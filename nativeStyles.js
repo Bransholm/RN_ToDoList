@@ -26,24 +26,6 @@ const nativeStyles = StyleSheet.create({
     fontSize: 16,
     fontStyle: "italic",
   },
-  // Button
-  button: {
-    backgroundColor: "#1E90FF",
-    borderWidth: 2,
-    borderColor: "#fff",
-    width: 280,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 10,
-    padding: 5,
-    marginTop: 5,
-    marginBottom: 5,
-  },
-  // Button text
-  buttonText: {
-    color: "#fff",
-    fontWeight: 600,
-  },
 });
 
 export default nativeStyles;

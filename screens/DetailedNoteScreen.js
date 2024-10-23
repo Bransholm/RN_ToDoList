@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import nativeStyles from "../nativeStyles";
+import StandardButton from "../components/buttons";
 
 export default function DetailedNoteScreen({ route, navigation }) {
     const { note } = route.params;
@@ -9,12 +10,10 @@ export default function DetailedNoteScreen({ route, navigation }) {
         <View style={nativeStyles.noteContainer}>
           <Text style={nativeStyles.noteText}>{note.name}</Text>
         </View>
-        <Pressable
-          style={nativeStyles.button}
+        <StandardButton
+          title="Back to the Todo List"
           onPress={() => navigation.goBack()}
-        >
-          <Text style={nativeStyles.buttonText}>Back to the Todo List</Text>
-        </Pressable>
+        />
       </View>
     );
 }
