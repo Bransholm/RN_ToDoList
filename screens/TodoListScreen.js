@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     fontWeight: 600,
   },
   noteContainer: {
-    backgroundColor: "#FBC02D",
+    backgroundColor: "#C79100",
     padding: 20,
     width: 280,
     borderWidth: 2,
