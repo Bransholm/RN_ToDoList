@@ -1,15 +1,21 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
+import nativeStyles from "../nativeStyles";
 
 export default function DetailedNoteScreen({ route, navigation }) {
     const { note } = route.params;
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.detailText}>{note.name}</Text>
-            <Pressable style={styles.button} onPress={() => navigation.goBack()}>
-                <Text style={styles.buttonText}>Back to the Todo List</Text>
-            </Pressable>
+      <View style={nativeStyles.container}>
+        <View style={nativeStyles.noteContainer}>
+          <Text style={nativeStyles.noteText}>{note.name}</Text>
         </View>
+        <Pressable
+          style={nativeStyles.button}
+          onPress={() => navigation.goBack()}
+        >
+          <Text style={nativeStyles.buttonText}>Back to the Todo List</Text>
+        </Pressable>
+      </View>
     );
 }
 
@@ -17,8 +23,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#000",
-    justifyContent: "center",
-    alignItems: "center",
+    paddingLeft: 10,
+    paddingTop: 35,
   },
   detailText: {
     color: "#fff",

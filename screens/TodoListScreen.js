@@ -2,6 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Pressable, TextInput, FlatList } from "react-native";
 import { useState, useEffect } from "react";
 import notesData from "../notesData.json"
+import nativeStyles from "../nativeStyles";
 
 export default function TodoListScreen({navigation}) {
 
@@ -24,19 +25,19 @@ export default function TodoListScreen({navigation}) {
     };
 
   return (
-    <View style={styles.container}>
+    <View style={nativeStyles.container}>
       <Text style={styles.headLine}>Todo list - Keep track of your tasks</Text>
       <TextInput
         style={styles.textInput}
         onChangeText={(txt) => setText(txt)}
         value={text}
-        placeholder="Enter task..."
+        placeholder="Enter new task..."
         onSubmitEditing={createTaskButtonHandler}
       />
-      <Pressable style={styles.button} onPress={createTaskButtonHandler}>
-        <Text style={styles.buttonText}>Create task</Text>
+      <Pressable style={nativeStyles.button} onPress={createTaskButtonHandler}>
+        <Text style={nativeStyles.buttonText}>Create task</Text>
       </Pressable>
-      <View style={styles.noteContainer}>
+      <View style={[nativeStyles.noteContainer, { marginTop: 15 }]}>
         <FlatList
           data={notes}
           renderItem={(note) => {
@@ -52,10 +53,10 @@ export default function TodoListScreen({navigation}) {
                 }
               >
                 <View style={{ flexDirection: "row" }}>
-                  <Text style={[styles.noteText, { width: 25 }]}>
+                  <Text style={[nativeStyles.noteText, { width: 25 }]}>
                     {note.item.key}.
                   </Text>
-                  <Text style={styles.noteText}>{displayText}</Text>
+                  <Text style={nativeStyles.noteText}>{displayText}</Text>
                 </View>
               </Pressable>
             );
@@ -69,12 +70,6 @@ export default function TodoListScreen({navigation}) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#000",
-    paddingLeft: 10,
-    paddingTop: 35,
-  },
   headLine: {
     color: "#fff",
     fontSize: 20,
@@ -84,40 +79,11 @@ const styles = StyleSheet.create({
   textInput: {
     backgroundColor: "#fff",
     color: "#1E90FF",
-    width: 200,
-    //marginBottom: 10,
+    width: 280,
     borderRadius: 10,
     padding: 5,
     fontWeight: 600,
     borderColor: "#1E90FF",
     borderWidth: 2,
-  },
-  button: {
-    backgroundColor: "#1E90FF",
-    width: 200,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 10,
-    padding: 5,
-    marginTop: 10,
-    marginBottom: 20,
-  },
-  buttonText: {
-    color: "#fff",
-    fontWeight: 600,
-  },
-  noteContainer: {
-    backgroundColor: "#C79100",
-    padding: 20,
-    width: 280,
-    borderWidth: 2,
-    borderColor: "#777",
-    marginBottom: 10,
-  },
-  noteText: {
-    color: "#fff",
-    paddingBottom: 2,
-    fontSize: 16,
-    fontStyle: "italic",
   },
 });
