@@ -1,7 +1,4 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Pressable, TextInput, FlatList } from "react-native";
-import { useState, useEffect } from "react";
-import notesData from "./notesData.json";
+import { app } from "./firebase";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import TodoListScreen from "./screens/TodoListScreen";

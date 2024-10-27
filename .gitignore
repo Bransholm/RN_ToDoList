@@ -34,5 +34,6 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
-# test file
+# project files
+firebase.js
 test.js
