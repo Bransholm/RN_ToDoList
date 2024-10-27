@@ -1,4 +1,5 @@
-import { app } from "./firebase";
+import { app, database } from "./firebase";
+import { collection, addDoc } from "firebase/firestore";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import TodoListScreen from "./screens/TodoListScreen";

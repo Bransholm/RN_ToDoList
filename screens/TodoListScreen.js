@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import notesData from "../notesData.json"
 import nativeStyles from "../nativeStyles";
 import StandardButton from "../components/buttons";
+import { addDoc, collection } from "firebase/firestore";
+import { database } from "../firebase";
 
 export default function TodoListScreen({navigation}) {
 
@@ -18,10 +20,15 @@ export default function TodoListScreen({navigation}) {
   }, [notes]);
 
   // Button handler for creating an new task
-    const createTaskButtonHandler = () => {
-        if (text.trim().length > 0) {
-            setNotes([...notes, { key: notes.length + 1, name: text }]);
-            setText("");
+    const createTaskButtonHandler = async () => {
+      if (text.trim().length > 0) {
+        try {
+          await addDoc(collection(database, "notes"), {text: text})
+            //setNotes([...notes, { key: notes.length + 1, name: text }]);
+          setText("");
+          } catch (error) {
+          console.error("Error adding Todo to database", error);          
+          }
         }
     };
 
