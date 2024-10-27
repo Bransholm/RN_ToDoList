@@ -51,7 +51,11 @@ export default function TodoListScreen({navigation}) {
               <Pressable
                 style={{ alignSelf: "flex-start" }}
                 onPress={() =>
-                  navigation.navigate("Details", { note: note.item })
+                  navigation.navigate("Details", {
+                    note: note.item,
+                    setNotes,
+                    noteIndex: note.index
+                  })
                 }
               >
                 <View style={{ flexDirection: "row" }}>

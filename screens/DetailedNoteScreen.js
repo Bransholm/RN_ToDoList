@@ -1,19 +1,33 @@
-import { StyleSheet, Text, View, Pressable } from "react-native";
+import { useState } from "react";
+import { StyleSheet, TextInput, View } from "react-native";
 import nativeStyles from "../nativeStyles";
 import StandardButton from "../components/buttons";
 
 export default function DetailedNoteScreen({ route, navigation }) {
-    const { note } = route.params;
+  const { note, noteIndex, setNotes } = route.params;
+  const [editedText, setEditedText] = useState(note.name)
+
+  const saveChangesHandler = () => {
+    setNotes((prevNotes) => {
+      const updatedNotes = [...prevNotes];
+      updatedNotes[noteIndex].name = editedText;
+      return updatedNotes;
+    });
+    console.log("Saved note", editedText);
+  };
 
     return (
       <View style={nativeStyles.container}>
         <View style={nativeStyles.noteContainer}>
-          <Text style={nativeStyles.noteText}>{note.name}</Text>
+          <TextInput
+            style={nativeStyles.noteText}
+            value={editedText}
+            onChangeText={setEditedText}
+            multiline={true}
+          />
         </View>
-        <StandardButton
-          title="Back to the Todo List"
-          onPress={() => navigation.goBack()}
-        />
+        <StandardButton title="Save changes" onPress={saveChangesHandler} />
+        <StandardButton title="Go back" onPress={() => navigation.goBack()} />
       </View>
     );
 }
