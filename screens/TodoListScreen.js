@@ -1,18 +1,18 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Pressable, TextInput, FlatList } from "react-native";
 import { useState, useEffect } from "react";
-import notesData from "../notesData.json"
 import nativeStyles from "../nativeStyles";
 import StandardButton from "../components/buttons";
-import { addDoc, collection } from "firebase/firestore";
+import { collection, addDoc, deleteDoc, doc } from "firebase/firestore";
 import { database } from "../firebase";
+import { useCollection } from "react-firebase-hooks/firestore";
 
 export default function TodoListScreen({navigation}) {
 
   // UseState for the input a new todo
   const [text, setText] = useState("");
-  // UseState for the notes list
-  const [notes, setNotes] = useState(notesData);
+  const [values, loading, error] = useCollection(collection(database, "notes"));
+  const notes = values?.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
 
   // Console.log notes for each render
   useEffect(() => {
@@ -31,6 +31,11 @@ export default function TodoListScreen({navigation}) {
           }
         }
     };
+    
+  const deleteDocument = async (id) => {
+    await deleteDoc(doc(database, "notes", id))      
+    }
+  
 
   return (
     <View style={nativeStyles.container}>
@@ -51,25 +56,26 @@ export default function TodoListScreen({navigation}) {
           data={notes}
           renderItem={(note) => {
             const displayText =
-              note.item.name.length > 25
-                ? `${note.item.name.substring(0, 25)}...`
-                : note.item.name;
+              note.item.text && note.item.text.length > 25
+                ? `${note.item.text.substring(0, 25)}...`
+                : note.item.text || "(Empty note)";
             return (
               <Pressable
                 style={{ alignSelf: "flex-start" }}
                 onPress={() =>
                   navigation.navigate("Details", {
                     note: note.item,
-                    setNotes,
+                    setNotes: () => { },
                     noteIndex: note.index
                   })
                 }
               >
                 <View style={{ flexDirection: "row" }}>
                   <Text style={[nativeStyles.noteText, { width: 25 }]}>
-                    {note.item.key}.
+                    {note.index +1}.
                   </Text>
                   <Text style={nativeStyles.noteText}>{displayText}</Text>
+                  <Text onPress={() => deleteDocument(note.item.id)} style={nativeStyles.noteText}>Delete</Text>
                 </View>
               </Pressable>
             );
