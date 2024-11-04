@@ -16,9 +16,11 @@ export default function TodoListScreen({navigation}) {
   const notes = values?.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
 
   // Console.log notes for each render
-  // useEffect(() => {
-  //   console.log("Updated notes:", notes);
-  // }, [notes]);
+  useEffect(() => {
+    if (notes) {
+      console.log("Updated notes:", notes);
+    }
+  }, [notes]);
 
   // Button handler for creating an new task
     const createTaskButtonHandler = async () => {
@@ -65,7 +67,6 @@ export default function TodoListScreen({navigation}) {
                 onPress={() =>
                   navigation.navigate("Details", {
                     note: note.item,
-                    noteIndex: note.index,
                   })
                 }
               >
