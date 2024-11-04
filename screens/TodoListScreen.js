@@ -80,7 +80,7 @@ export default function TodoListScreen({navigation}) {
                     style={nativeStyles.noteText}
                   >
                     {" "}
-                    <Icon name="check" size={16} color="#fff" />
+                    <Icon name="delete" size={16} color="#fff" />
                   </Text>
                 </View>
               </Pressable>
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   textInput: {
     backgroundColor: "#fff",
     color: "#1E90FF",
-    width: 280,
+    width: 310,
     borderRadius: 10,
     padding: 5,
     fontWeight: 600,

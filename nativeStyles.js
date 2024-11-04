@@ -12,8 +12,8 @@ const nativeStyles = StyleSheet.create({
   noteContainer: {
     backgroundColor: "#C79100",
     padding: 20,
-    width: 280,
-    minHeight: 240,
+    width: 310,
+    minHeight: 310,
     borderWidth: 2,
     borderColor: "#777",
     marginTop: 5,
