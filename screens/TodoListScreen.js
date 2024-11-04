@@ -6,6 +6,7 @@ import StandardButton from "../components/buttons";
 import { collection, addDoc, deleteDoc, doc } from "firebase/firestore";
 import { database } from "../firebase";
 import { useCollection } from "react-firebase-hooks/firestore";
+import Icon from "react-native-vector-icons/MaterialIcons";
 
 export default function TodoListScreen({navigation}) {
 
@@ -15,16 +16,15 @@ export default function TodoListScreen({navigation}) {
   const notes = values?.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
 
   // Console.log notes for each render
-  useEffect(() => {
-    console.log("Updated notes:", notes);
-  }, [notes]);
+  // useEffect(() => {
+  //   console.log("Updated notes:", notes);
+  // }, [notes]);
 
   // Button handler for creating an new task
     const createTaskButtonHandler = async () => {
       if (text.trim().length > 0) {
         try {
           await addDoc(collection(database, "notes"), {text: text})
-            //setNotes([...notes, { key: notes.length + 1, name: text }]);
           setText("");
           } catch (error) {
           console.error("Error adding Todo to database", error);          
@@ -65,17 +65,22 @@ export default function TodoListScreen({navigation}) {
                 onPress={() =>
                   navigation.navigate("Details", {
                     note: note.item,
-                    setNotes: () => { },
-                    noteIndex: note.index
+                    noteIndex: note.index,
                   })
                 }
               >
                 <View style={{ flexDirection: "row" }}>
                   <Text style={[nativeStyles.noteText, { width: 25 }]}>
-                    {note.index +1}.
+                    {note.index + 1}.
                   </Text>
                   <Text style={nativeStyles.noteText}>{displayText}</Text>
-                  <Text onPress={() => deleteDocument(note.item.id)} style={nativeStyles.noteText}>Delete</Text>
+                  <Text
+                    onPress={() => deleteDocument(note.item.id)}
+                    style={nativeStyles.noteText}
+                  >
+                    {" "}
+                    <Icon name="check" size={16} color="#fff" />
+                  </Text>
                 </View>
               </Pressable>
             );

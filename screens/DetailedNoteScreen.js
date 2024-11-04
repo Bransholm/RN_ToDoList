@@ -2,19 +2,21 @@ import { useState } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 import nativeStyles from "../nativeStyles";
 import StandardButton from "../components/buttons";
+import { doc, updateDoc } from "firebase/firestore";
+import { database } from "../firebase";
 
 export default function DetailedNoteScreen({ route, navigation }) {
   const { note, noteIndex, setNotes } = route.params;
-  const [editedText, setEditedText] = useState(note.name)
+  const [editedText, setEditedText] = useState(note.text)
 
   const saveChangesHandler = () => {
-    setNotes((prevNotes) => {
-      const updatedNotes = [...prevNotes];
-      updatedNotes[noteIndex].name = editedText;
-      return updatedNotes;
+    updateDoc(doc(database, "notes", note.id), {
+      text: editedText
     });
+    navigation.goBack();
     console.log("Saved note", editedText);
   };
+
 
     return (
       <View style={nativeStyles.container}>
