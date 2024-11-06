@@ -2,6 +2,8 @@ import { useState } from "react";
 import { TextInput, View } from "react-native";
 import nativeStyles from "../nativeStyles";
 import StandardButton from "../components/buttons";
+import { doc, updateDoc } from "firebase/firestore";
+import { database } from "../firebase";
 
 export default function DetailedNoteScreen({ route, navigation }) {
   const { note } = route.params;
